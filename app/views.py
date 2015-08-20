@@ -20,7 +20,7 @@ def post_new(request):
 			post.author = request.user
 			post.published_date = timezone.now()
 			post.save()
-			return redirect('app.views.post_list')
+			return redirect('app.views.post_detail', pk=post.pk)
 	else:
 		form = PostForm()
 	return render(request, 'app/post_new.html', {'form': form})
@@ -41,13 +41,27 @@ def post_edit(request, pk):
 	
 def post_list(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-	return render(request, 'app/post_list.html', {'posts': posts})
-	
+	return render(
+		request, 
+		'app/post_list.html', 
+		{
+			'posts': posts,
+			'title': 'Home Page',
+			'year': datetime.now().year,
+		})
+		
 def post_detail(request, pk):
 	post = get_object_or_404(Post, pk=pk)
-	return render(request, 'app/post_detail.html', {'post': post})
+	return render(
+		request, 
+		'app/post_detail.html', 
+		{
+			'post': post,
+			'title': 'News Post',
+			'year': datetime.now().year,
+		})
 
-
+"""
 def artistcreate(request):
     if request.method == "GET":
         form = ArtistForm();
@@ -64,7 +78,8 @@ def artists(request):
 def artistdetails(request, id):
     artist = Artist.objects.get(pk = id);
     return render_to_response('app/artistdetails.html', { 'artist': artist });
-    
+"""
+
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)

@@ -21,10 +21,11 @@ from datetime import datetime
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 	
-	url(r'^blog$', 'app.views.post_list', name='post_list'),
+	url(r'^$', 'app.views.post_list', name='post_list'),
 	url(r'^post/new/$', 'app.views.post_new', name='post_new'),
+	url(r'^post/(?P<pk>[0-9]+)/$', 'app.views.post_detail', name='post_detail'),
 	
-    url(r'^$', 'app.views.home', name='home'),
+    #url(r'^$', 'app.views.home', name='home'),
     url(r'^contact$', 'app.views.contact', name='contact'),
     url(r'^about', 'app.views.about', name='about'),
     url(r'^login/$',
