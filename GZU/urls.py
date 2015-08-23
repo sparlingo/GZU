@@ -21,6 +21,9 @@ from datetime import datetime
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 	
+	url(r'^register', 'app.views.register', name='register'),
+	url(r'^success', 'app.views.register_success', name='success'),
+	
 	url(r'^$', 'app.views.post_list', name='post_list'),
 	url(r'^post/new/$', 'app.views.post_new', name='post_new'),
 	url(r'^post/(?P<pk>[0-9]+)/$', 'app.views.post_detail', name='post_detail'),

@@ -5,10 +5,41 @@ Definition of views.
 from django.shortcuts import render, render_to_response, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 from datetime import datetime
 from django.utils import timezone
 from .models import Post
-from .forms import PostForm
+from .forms import *
+
+# User Views
+
+@csrf_protect
+def register(request):
+	if request.method == "POST":
+		form = RegistrationForm(request.POST)
+		if form.is_valid():
+			user = User.objects.create_user(
+			username = form.cleaned_data['username'],
+			password = form.cleaned_data['password1'],
+			email = form.cleaned_data['email']
+			)
+			#-return HttpResponseRedirect('/success/')
+	else:
+		form = RegistrationForm()
+	return render(request, 'app/register.html', 
+		{
+			'form': form,
+			'title': 'Register',
+			'year': datetime.now().year,
+		})
+	
+def register_success(request):
+	return render_to_response('success.html')
+	
+@login_required
+def home(request):
+	return render_to_response('home.html', {'user': request.user})
 
 # Blog Views
 
@@ -21,8 +52,8 @@ def post_new(request):
 			post.published_date = timezone.now()
 			post.save()
 			return redirect('app.views.post_detail', pk=post.pk)
-	else:
-		form = PostForm()
+		else:
+			form = PostForm()
 	return render(request, 'app/post_new.html', {'form': form})
 		
 def post_edit(request, pk):
@@ -61,24 +92,6 @@ def post_detail(request, pk):
 			'year': datetime.now().year,
 		})
 
-"""
-def artistcreate(request):
-    if request.method == "GET":
-        form = ArtistForm();
-        return render(request, 'app/create.html', { 'form':form });
-    elif request.method == "POST":
-        form = ArtistForm(request.POST);
-        form.save();
-        return HttpResponseRedirect('/artists');
-
-def artists(request):
-    artists = Artist.objects.all();
-    return render_to_response('app/artists.html', {'artists': artists});
-
-def artistdetails(request, id):
-    artist = Artist.objects.get(pk = id);
-    return render_to_response('app/artistdetails.html', { 'artist': artist });
-"""
 
 def home(request):
     """Renders the home page."""
