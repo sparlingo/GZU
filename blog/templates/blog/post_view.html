@@ -1,4 +1,4 @@
-{% extends "app/layout.html" %}
+{% extends "blog/layout.html" %}
 {% block content %}
 
 <div class="row">
@@ -13,4 +13,5 @@
 			<h1>{{ post.title }}</h1>
 			<p>{{ post.text|linebreaks }}</p>
 		</div>
+<h4><a href="/">Back to main page</a></h4>
 {% endblock %}

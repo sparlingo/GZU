@@ -15,26 +15,26 @@ Including another URLconf
 """
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
-from app.forms import BootstrapAuthenticationForm
+from blog.forms import BootstrapAuthenticationForm
 from datetime import datetime
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 	
-	url(r'^register', 'app.views.register', name='register'),
-	url(r'^success', 'app.views.register_success', name='success'),
+	url(r'^register', 'blog.views.register', name='register'),
 	
-	url(r'^$', 'app.views.post_list', name='post_list'),
-	url(r'^post/new/$', 'app.views.post_new', name='post_new'),
-	url(r'^post/(?P<pk>[0-9]+)/$', 'app.views.post_detail', name='post_detail'),
+	url(r'^$', 'blog.views.post_index', name='post_index'),
+	url(r'^post/new/$', 'blog.views.post_new', name='post_new'),
+	url(r'^post/(?P<pk>[0-9]+)/$', 'blog.views.post_view', name='post_view'),
 	
-    #url(r'^$', 'app.views.home', name='home'),
-    url(r'^contact$', 'app.views.contact', name='contact'),
-    url(r'^about', 'app.views.about', name='about'),
+	url(r'^polls$', 'polls.views.index', name='index'),
+	
+    url(r'^contact$', 'blog.views.contact', name='contact'),
+    url(r'^about', 'blog.views.about', name='about'),
     url(r'^login/$',
         'django.contrib.auth.views.login',
         {
-            'template_name': 'app/login.html',
+            'template_name': 'blog/login.html',
             'authentication_form': BootstrapAuthenticationForm,
             'extra_context':
             {

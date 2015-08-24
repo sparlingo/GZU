@@ -1,11 +1,8 @@
-﻿"""
-Definition of views.
-"""
-
-from django.shortcuts import render, render_to_response, get_object_or_404, redirect
+﻿from django.shortcuts import render, render_to_response, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
 from datetime import datetime
 from django.utils import timezone
@@ -24,19 +21,19 @@ def register(request):
 			password = form.cleaned_data['password1'],
 			email = form.cleaned_data['email']
 			)
-			#-return HttpResponseRedirect('/success/')
+			messages.add_message(request, messages.SUCCESS, "You are now registered, please login"),
+			return HttpResponseRedirect('/login')
+			
 	else:
 		form = RegistrationForm()
-	return render(request, 'app/register.html', 
+	return render(request, 'blog/register.html', 
 		{
 			'form': form,
 			'title': 'Register',
 			'year': datetime.now().year,
 		})
 	
-def register_success(request):
-	return render_to_response('success.html')
-	
+
 @login_required
 def home(request):
 	return render_to_response('home.html', {'user': request.user})
@@ -51,11 +48,12 @@ def post_new(request):
 			post.author = request.user
 			post.published_date = timezone.now()
 			post.save()
-			return redirect('app.views.post_detail', pk=post.pk)
+			return redirect('blog.views.post_detail', pk=post.pk)
 		else:
 			form = PostForm()
-	return render(request, 'app/post_new.html', {'form': form})
-		
+	return render(request, 'blog/post_new.html', {'form': form})
+
+"""	I'll update this later - KS, Aug 24, 2015
 def post_edit(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	if request.method == "POST":
@@ -65,53 +63,52 @@ def post_edit(request, pk):
 			post.author = request.user
 			post.published_date = timezone.now()
 			post.save()
-			return redirect('app.views.post_detail', pk=post.pk)
+			return redirect('blog.views.post_detail', pk=post.pk)
 	else:
 		form = PostForm(instance=post)
-	return render(request, 'app/post_edit.html', {'form': form})
-	
-def post_list(request):
+	return render(request, 'blog/post_edit.html', {'form': form})
+"""
+def post_index(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 	return render(
 		request, 
-		'app/post_list.html', 
+		'blog/post_index.html', 
 		{
 			'posts': posts,
 			'title': 'Home Page',
 			'year': datetime.now().year,
 		})
 		
-def post_detail(request, pk):
+def post_view(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	return render(
 		request, 
-		'app/post_detail.html', 
+		'blog/post_view.html', 
 		{
 			'post': post,
 			'title': 'News Post',
 			'year': datetime.now().year,
 		})
 
-
+""" Re-enable this if you don't want the blog index on the website root
 def home(request):
-    """Renders the home page."""
+ 
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/index.html',
+        'blog/index.html',
         context_instance = RequestContext(request,
         {
             'title':'Home Page',
             'year':datetime.now().year,
         })
     )
-
+"""
 def contact(request):
-    """Renders the contact page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/contact.html',
+        'blog/contact.html',
         context_instance = RequestContext(request,
         {
             'title':'Contact',
@@ -121,15 +118,14 @@ def contact(request):
     )
 
 def about(request):
-    """Renders the about page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/about.html',
+        'blog/about.html',
         context_instance = RequestContext(request,
         {
-            'title':'About',
-            'message':'Your application description page.',
+            'title':'Ultimate around Guangzhou',
+            'message':'If you want to play Ultimate Frisbee around Guangzhou, China, we can help.',
             'year':datetime.now().year,
         })
     )
