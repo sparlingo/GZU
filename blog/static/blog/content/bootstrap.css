@@ -4928,20 +4928,23 @@ a.list-group-item.active > .badge,
 }
 
 .jumbotron {
-  padding-top: 2px;
-  padding-bottom: 84px;
+  padding-top: 50px;
+  padding-bottom: 300px;
   padding-left: 15px;
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: 54px;
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
   background-color: #eeeeee;
+  background: url('../images/banner.JPG');
+  color: #ffffff;
 }
 
 .jumbotron h1 {
   line-height: 1;
   color: inherit;
+  font-size: inherit;
 }
 
 .jumbotron p {
@@ -4954,15 +4957,19 @@ a.list-group-item.active > .badge,
 
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 2px;
-    padding-bottom: 110px;
+    padding-top: 8px;
+    padding-bottom: 330px;
+	background: url('../images/banner.JPG');
+	
   }
   .container .jumbotron {
     padding-right: 40px;
     padding-left: 40px;
   }
   .jumbotron h1 {
-    font-size: 48px;
+    font-size: 54px;
+	color: #ffffff;
+	padding-top: 12px;
   }
 }
 
