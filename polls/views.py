@@ -8,13 +8,13 @@ from django.contrib.auth.models import User
 from .models import Question, Choice
 
 def poll_index(request):
-	if user.is_authenticated:
+	#if user.is_authenticated:
 		latest_question_list = Question.objects.order_by('-pub_date')[:5]
 		context = {'latest_question_list': latest_question_list}
 		return render(request, 'polls/poll_index.html', context)
-	else:
+	"""else:
 		messages.add_message(request, messages.ERROR, "You must be logged in to vote. Please use the links at the top to login or register")
-		return HttpResponseRedirect('/')
+		return HttpResponseRedirect('/')"""
 
 def poll_detail(request, question_id):
 	question = get_object_or_404(Question, pk=question_id)
