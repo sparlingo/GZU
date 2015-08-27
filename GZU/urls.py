@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
-from blog.forms import BootstrapAuthenticationForm
+
 from datetime import datetime
 
 urlpatterns = [
@@ -39,22 +39,6 @@ urlpatterns = [
     
 	# User URLs
 	url(r'^register', 'blog.views.register', name='register'),
-	url(r'^login/$',
-        'django.contrib.auth.views.login',
-        {
-            'template_name': 'blog/login.html',
-            'authentication_form': BootstrapAuthenticationForm,
-            'extra_context':
-            {
-                'title':'Log in',
-                'year':datetime.now().year,
-            }
-        },
-        name='login'),
-    url(r'^logout$',
-        'django.contrib.auth.views.logout',
-        {
-            'next_page': '/',
-        },
-        name='logout'),
+	url(r'^login$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^logout$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
 ]

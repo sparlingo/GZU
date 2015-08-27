@@ -2,11 +2,13 @@
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
 from datetime import datetime
 from django.utils import timezone
-from .models import Post
+from .models import *
 from .forms import *
 
 # User Views
@@ -21,9 +23,13 @@ def register(request):
 			password = form.cleaned_data['password1'],
 			email = form.cleaned_data['email'],
 			)
-			messages.add_message(request, messages.SUCCESS, "You are now registered, please login"),
-			return HttpResponseRedirect('/login')
-			
+			user = authenticate(username=request.POST['username'],password=request.POST['password1'])
+			if user.is_active:
+				login(request, user)
+				messages.add_message(request, messages.SUCCESS, "You are now logged into your new account")
+				return HttpResponseRedirect('/')
+			else:
+				messages.add_message(request, messages.INFO, "This account is not active"),
 	else:
 		form = RegistrationForm()
 	return render(request, 'blog/register.html', 
@@ -32,7 +38,7 @@ def register(request):
 			'title': 'Register',
 			'year': datetime.now().year,
 		})
-	
+		
 
 @login_required
 def home(request):
