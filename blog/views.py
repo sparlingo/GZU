@@ -19,7 +19,7 @@ def register(request):
 			user = User.objects.create_user(
 			username = form.cleaned_data['username'],
 			password = form.cleaned_data['password1'],
-			email = form.cleaned_data['email']
+			email = form.cleaned_data['email'],
 			)
 			messages.add_message(request, messages.SUCCESS, "You are now registered, please login"),
 			return HttpResponseRedirect('/login')

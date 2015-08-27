@@ -19,19 +19,27 @@ from blog.forms import BootstrapAuthenticationForm
 from datetime import datetime
 
 urlpatterns = [
+	# Admin URLs
     url(r'^admin/', include(admin.site.urls)),
 	
-	url(r'^register', 'blog.views.register', name='register'),
-	
-	url(r'^$', 'blog.views.post_index', name='post_index'),
+	# Blog URLs
+	url(r'^$', 'blog.views.post_index', name='home'),
 	url(r'^post/new/$', 'blog.views.post_new', name='post_new'),
 	url(r'^post/(?P<pk>[0-9]+)/$', 'blog.views.post_view', name='post_view'),
 	
-	url(r'^polls$', 'polls.views.index', name='index'),
+	# Poll URLs
+	url(r'^polls$', 'polls.views.poll_index', name='polls'),
+	url(r'^poll/(?P<question_id>[0-9]+)/$', 'polls.views.poll_detail', name='poll_detail'),
+	url(r'^poll/(?P<question_id>[0-9]+)/results/$', 'polls.views.poll_results', name='poll_results'),
+	url(r'^poll/(?P<question_id>[0-9]+)/vote/$', 'polls.views.poll_vote', name='poll_vote'),
 	
+	# Static pages URLs
     url(r'^contact$', 'blog.views.contact', name='contact'),
     url(r'^about', 'blog.views.about', name='about'),
-    url(r'^login/$',
+    
+	# User URLs
+	url(r'^register', 'blog.views.register', name='register'),
+	url(r'^login/$',
         'django.contrib.auth.views.login',
         {
             'template_name': 'blog/login.html',

@@ -1,0 +1,26 @@
+{% extends "blog/layout.html" %}
+{% block content %}
+
+<h1>Polls</h1>
+<br />
+
+<div class="row">
+	{% if latest_question_list %}
+			{% for question in latest_question_list %}
+				<div class="col-md-4">
+				
+				<div class="date">{{ question.pub_date }}</div>
+				<a href="{% url 'poll_detail' question.id %}">
+				<h2>{{ question.question_reference }}</h2></a>
+				<p>{{ question.question_text }}</p>
+				</div>
+				
+			{% endfor %}
+	{% else %}
+		<p>No polls are available.</p>
+	{% endif %}
+</div>
+<br />
+
+<h4><a href="/">Back to main page</a></h4>
+{% endblock %}
