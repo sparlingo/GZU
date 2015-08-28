@@ -17,3 +17,12 @@ class Post(models.Model):
 		
 	def __str__(self):
 		return self.title
+		
+class Comment(models.Model):
+	author = models.ForeignKey('auth.User')
+	text = models.TextField()
+	created_date = models.DateTimeField(default=timezone.now)
+	post = models.ForeignKey(Post)
+	
+	def __str__(self):
+		return self.text[:50]

@@ -1,10 +1,6 @@
-"""
-Definition of forms.
-"""
-
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from .models import Post
+from .models import Post, Comment
 from django.contrib.auth.models import User
 
 
@@ -12,6 +8,11 @@ class PostForm(forms.ModelForm):
 	class Meta:
 		model = Post
 		fields = ('title', 'text')
+		
+class CommentForm(forms.ModelForm):
+	class Meta:
+		model = Comment
+		fields = ('text',)
 
 class RegistrationForm(forms.Form):
     username = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Username"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores.") })

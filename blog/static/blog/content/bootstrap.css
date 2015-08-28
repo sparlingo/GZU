@@ -808,6 +808,36 @@ pre code {
   clear: both;
 }
 
+/* For small screen */
+.comments .row div:nth-of-type(4n-3) {
+  background-color: #eeeeee;
+}
+.comments .row div:nth-of-type(4n-2){
+  background-color: #eeeeee;
+}
+.comments .row div:nth-of-type(4n-1) {
+  background-color: #dddddd;
+}
+.comments .row div:nth-of-type(4n){
+  background-color: #dddddd;
+}
+
+/* For medium screen */    
+@media (min-width: 768px) {
+.comments .row div:nth-of-type(4n-3) {
+  background-color: #eeeeee;
+}
+.comments .row div:nth-of-type(4n-2){
+  background-color: #eeeeee;
+}
+.comments .row div:nth-of-type(4n-1) {
+  background-color: #dddddd;
+}
+.comments .row div:nth-of-type(4n){
+  background-color: #dddddd;
+}
+
+
 .col-xs-1,
 .col-xs-2,
 .col-xs-3,

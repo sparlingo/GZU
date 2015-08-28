@@ -39,7 +39,6 @@ def register(request):
 			'year': datetime.now().year,
 		})
 		
-
 @login_required
 def home(request):
 	return render_to_response('home.html', {'user': request.user})
@@ -87,6 +86,7 @@ def post_index(request):
 		
 def post_view(request, pk):
 	post = get_object_or_404(Post, pk=pk)
+	comments = Comment.objects.filter(post=post)
 	return render(
 		request, 
 		'blog/post_view.html', 
@@ -94,7 +94,9 @@ def post_view(request, pk):
 			'post': post,
 			'title': 'News Post',
 			'year': datetime.now().year,
+			'comments': comments,
 		})
+
 
 """ Re-enable this if you don't want the blog index on the website root
 def home(request):

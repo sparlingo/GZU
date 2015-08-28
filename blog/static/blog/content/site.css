@@ -16,6 +16,53 @@ textarea {
     max-width: 280px;
 }
 
+/* For the jumbotron */
+.jumbotron {
+  padding-top: 50px;
+  padding-bottom: 300px;
+  padding-left: 15px;
+  margin-bottom: 20px;
+  font-size: 54px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #eeeeee;
+  background: url('../images/banner.JPG');
+  color: #ffffff;
+}
+
+.jumbotron h1 {
+  line-height: 1;
+  color: inherit;
+  font-size: inherit;
+}
+
+.jumbotron p {
+  line-height: 1.4;
+}
+
+.container .jumbotron {
+  border-radius: 6px;
+}
+
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 8px;
+    padding-bottom: 330px;
+	background: url('../images/banner.JPG');
+	
+  }
+  .container .jumbotron {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+  .jumbotron h1 {
+    font-size: 58px;
+	color: #ffffff;
+	padding-top: 12px;
+  }
+}
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;
@@ -53,4 +100,33 @@ input[type="checkbox"].input-validation-error {
 
 .save {
     margin-top: 10px;
+}
+
+/* For small screen */
+.comments .row div:nth-of-type(4n-3) {
+  background-color: #eeeeee;
+}
+.comments .row div:nth-of-type(4n-2){
+  background-color: #eeeeee;
+}
+.comments .row div:nth-of-type(4n-1) {
+  background-color: #dddddd;
+}
+.comments .row div:nth-of-type(4n){
+  background-color: #dddddd;
+}
+
+/* For medium screen */    
+@media (min-width: 768px) {
+.comments .row div:nth-of-type(4n-3) {
+  background-color: #eeeeee;
+}
+.comments .row div:nth-of-type(4n-2){
+  background-color: #eeeeee;
+}
+.comments .row div:nth-of-type(4n-1) {
+  background-color: #dddddd;
+}
+.comments .row div:nth-of-type(4n){
+  background-color: #dddddd;
 }
