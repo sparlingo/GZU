@@ -41,6 +41,8 @@ INSTALLED_APPS = (
 	#'south',
     'blog',
     'polls',
+	'league',
+	
 )
 
 MIDDLEWARE_CLASSES = (

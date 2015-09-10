@@ -7,6 +7,8 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'blog/content/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'blog/content/site.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/content/slick.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/content/slick-theme.css' %}" />
     <script src="{% static 'blog/scripts/modernizr-2.6.2.js' %}"></script>
 	<link rel="shortcut icon" type="image/x-icon" href="{% static 'blog/images/favicon.png' %}" />
 </head>
@@ -24,12 +26,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
-					<li><a href="{% url 'register' %}">Register</a></li>
+					<li><a href="{% url 'photos' %}">Photos</a></li>
 					<li><a href="{% url 'polls' %}">Polls</a></li>
-					
+					<li><a href="{% url 'register' %}">Register</a></li>
                 </ul>
                 {% include 'blog/loginpartial.html' %}
             </div>
@@ -54,10 +55,12 @@
         </footer>
     </div>
 
-    <script src="{% static 'blog/scripts/jquery-1.10.2.js' %}"></script>
+{% block scripts %}{% endblock %}
+    <script src="{% static 'blog/scripts/jquery-1.11.3.min.js' %}"></script>
+	<script src="{% static 'blog/scripts/jquery-migrate.js' %}"></script>
+	<script src="{% static 'blog/scripts/slick.min.js' %}"></script>
     <script src="{% static 'blog/scripts/bootstrap.js' %}"></script>
     <script src="{% static 'blog/scripts/respond.js' %}"></script>
-{% block scripts %}{% endblock %}
-
+	<script src="{% static 'blog/scripts/gallery.js' %}"></script>
 </body>
 </html>

@@ -2,28 +2,34 @@
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.views.decorators.csrf import csrf_protect
 from datetime import datetime
 from django.utils import timezone
-from .models import *
-from .forms import *
+from .models import Post, Comment, Feedback, UserProfile
+from .forms import PostForm, CommentForm, FeedbackForm, UserRegistrationForm, UserProfileForm
 
 # User Views
 
 @csrf_protect
-def register(request):
+def register(request): #Clean this up later, KS 2015/09/08
 	if request.method == "POST":
-		form = RegistrationForm(request.POST)
-		if form.is_valid():
+		form = UserRegistrationForm(request.POST, instance=request.user)
+		form_profile = UserProfileForm(request.POST, instance=request.user.profile)
+		if form.is_valid() and form_profile.is_valid():
+			# Save to the auth_user table
 			user = User.objects.create_user(
 			username = form.cleaned_data['username'],
 			password = form.cleaned_data['password1'],
 			email = form.cleaned_data['email'],
 			)
+			# login the new user, might want to add email authentication in the future
 			user = authenticate(username=request.POST['username'],password=request.POST['password1'])
+			# Save to the user_profile table
+			form_profile.save()
 			if user.is_active:
 				login(request, user)
 				messages.add_message(request, messages.SUCCESS, "You are now logged into your new account")
@@ -31,20 +37,19 @@ def register(request):
 			else:
 				messages.add_message(request, messages.INFO, "This account is not active"),
 	else:
-		form = RegistrationForm()
+		form = UserRegistrationForm()
+		form_profile = UserProfileForm()
 	return render(request, 'blog/register.html', 
 		{
 			'form': form,
+			'form_profile': form_profile,
 			'title': 'Register',
 			'year': datetime.now().year,
 		})
 		
-@login_required
-def home(request):
-	return render_to_response('home.html', {'user': request.user})
 
 # Blog Views
-
+@login_required
 def post_new(request):
 	if request.method == "POST":
 		form = PostForm(request.POST)
@@ -56,7 +61,7 @@ def post_new(request):
 			return redirect('blog.views.post_detail', pk=post.pk)
 		else:
 			form = PostForm()
-	return render(request, 'blog/post_new.html', {'form': form})
+			return render(request, 'blog/post_new.html', {'form': form})
 
 """	I'll update this later - KS, Aug 24, 2015
 def post_edit(request, pk):
@@ -74,7 +79,9 @@ def post_edit(request, pk):
 	return render(request, 'blog/post_edit.html', {'form': form})
 """
 def post_index(request):
+	# Change the filter to only grab the first 100 characters or something to keep the homepage clean
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+	# Add something later to simply show how many comments there are for each news post
 	return render(
 		request, 
 		'blog/post_index.html', 
@@ -87,6 +94,8 @@ def post_index(request):
 def post_view(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	comments = Comment.objects.filter(post=post)
+	count = len(comments)
+	form = CommentForm
 	return render(
 		request, 
 		'blog/post_view.html', 
@@ -95,35 +104,43 @@ def post_view(request, pk):
 			'title': 'News Post',
 			'year': datetime.now().year,
 			'comments': comments,
-		})
+			'count': count,
+			'form': form,
+		}
+	)
 
-
-""" Re-enable this if you don't want the blog index on the website root
-def home(request):
- 
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'blog/index.html',
-        context_instance = RequestContext(request,
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-        })
-    )
-"""
-def contact(request):
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'blog/contact.html',
-        context_instance = RequestContext(request,
-        {
-            'title':'Contact',
-            'message':'Your contact page.',
-            'year':datetime.now().year,
-        })
-    )
+# Have to modify this so that it works for multiple types
+@csrf_protect
+def comment_add(request, pk):
+	if request.method == "POST":
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			comment = form.save(commit=False)
+			comment.post_id = pk
+			comment.author_id = request.user.id
+			comment.save()
+			messages.add_message(request, messages.SUCCESS, "Thank you for adding to the conversation")
+			return HttpResponseRedirect(reverse(post_view, args=[pk]))
+	else:
+		form = CommentForm()
+		
+def contact(request): # This also handles the feedback form
+	if request.method == "POST":
+		form = FeedbackForm(request.POST)
+		if form.is_valid():
+			feedback = form.save()
+			messages.add_message(request, messages.SUCCESS, "Thank you for telling us what you think, we appreciate it :)")
+			return redirect('blog.views.contact')
+	else:
+		form = FeedbackForm()
+		return render(
+			request, 'blog/contact.html', {
+				'title':'Contact',
+				'message':'Your contact page.',
+				'year':datetime.now().year,
+				'form': form
+			}
+		)
 
 def about(request):
     assert isinstance(request, HttpRequest)
@@ -137,3 +154,13 @@ def about(request):
             'year':datetime.now().year,
         })
     )
+
+def photos(request):
+	return render(
+		request,
+		'blog/photos.html',
+		{
+			'title': 'Photos',
+			'year': datetime.now().year,
+		}
+	)

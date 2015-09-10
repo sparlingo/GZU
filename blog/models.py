@@ -1,5 +1,5 @@
 ﻿from django.db import models
-from django import forms
+from django.contrib.auth.models import User
 from django.utils import timezone
 
 
@@ -20,9 +20,29 @@ class Post(models.Model):
 		
 class Comment(models.Model):
 	author = models.ForeignKey('auth.User')
-	text = models.TextField()
+	text = models.TextField(max_length=400)
 	created_date = models.DateTimeField(default=timezone.now)
 	post = models.ForeignKey(Post)
 	
 	def __str__(self):
-		return self.text[:50]
+		return self.text[:80]
+		
+class UserProfile(models.Model):
+	user = models.OneToOneField(User)
+	slug = models.SlugField(max_length=20)
+	MALE = 'M'
+	FEMALE = 'F'
+	GENDER_CHOICES = (
+		(MALE, 'Male'),
+		(FEMALE, 'Female'),
+	)
+	gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=MALE)
+	
+User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u) [0])
+		
+class Feedback(models.Model):
+	text = models.TextField()
+	created_date = models.DateTimeField(default=timezone.now)
+	
+	def __str__(self):
+		return self.text[:25]

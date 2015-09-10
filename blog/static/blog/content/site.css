@@ -102,6 +102,7 @@ input[type="checkbox"].input-validation-error {
     margin-top: 10px;
 }
 
+/* Comments styling */
 /* For small screen */
 .comments .row div:nth-of-type(4n-3) {
   background-color: #eeeeee;
@@ -130,3 +131,11 @@ input[type="checkbox"].input-validation-error {
 .comments .row div:nth-of-type(4n){
   background-color: #dddddd;
 }
+
+.comments .comments-title{
+	margin-bottom:8px;
+	text-transform:uppercase;
+	background:#ccc;
+	color:#fff;
+	padding:18px 18px 15px;
+	}
