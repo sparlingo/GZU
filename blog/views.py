@@ -47,7 +47,7 @@ def register(request): #Clean this up later, KS 2015/09/08
 			'year': datetime.now().year,
 		})
 		
-
+""""
 # Blog Views
 @login_required
 def post_new(request):
@@ -62,7 +62,7 @@ def post_new(request):
 		else:
 			form = PostForm()
 			return render(request, 'blog/post_new.html', {'form': form})
-
+"""
 """	I'll update this later - KS, Aug 24, 2015
 def post_edit(request, pk):
 	post = get_object_or_404(Post, pk=pk)

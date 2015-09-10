@@ -24,7 +24,6 @@ urlpatterns = [
 	
 	# Blog URLs
 	url(r'^$', 'blog.views.post_index', name='home'),
-	url(r'^post/new/$', 'blog.views.post_new', name='post_new'),
 	url(r'^post/(?P<pk>[0-9]+)/$', 'blog.views.post_view', name='post_view'),
 	
 	# Comments

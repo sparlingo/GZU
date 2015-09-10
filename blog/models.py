@@ -20,7 +20,7 @@ class Post(models.Model):
 		
 class Comment(models.Model):
 	author = models.ForeignKey('auth.User')
-	text = models.TextField(max_length=400)
+	text = models.TextField(max_length=500)
 	created_date = models.DateTimeField(default=timezone.now)
 	post = models.ForeignKey(Post)
 	
@@ -37,7 +37,6 @@ class UserProfile(models.Model):
 		(FEMALE, 'Female'),
 	)
 	gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=MALE)
-	
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u) [0])
 		
 class Feedback(models.Model):

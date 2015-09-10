@@ -1,7 +1,6 @@
 {% extends "blog/layout.html" %}
 {% block content %}
 
-
 <div class="col-md-12">
 	<div class="post">
 		{% if post.published_date %}
@@ -14,8 +13,7 @@
 	</div>
 </div>
 
-{% include 'blog/commentspartial.html' %}
-
 <h4><a href="/">Back to main page</a></h4>
+{% include 'blog/commentspartial.html' %}
 
 {% endblock %}

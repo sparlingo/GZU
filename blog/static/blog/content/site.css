@@ -27,7 +27,7 @@ textarea {
   line-height: 2.1428571435;
   color: inherit;
   background-color: #eeeeee;
-  background: url('../images/banner.JPG');
+  background: url('../images/bannermini.JPG');
   color: #ffffff;
 }
 
@@ -104,32 +104,57 @@ input[type="checkbox"].input-validation-error {
 
 /* Comments styling */
 /* For small screen */
-.comments .row div:nth-of-type(4n-3) {
+.comments div:nth-of-type(4n-3) {
   background-color: #eeeeee;
 }
-.comments .row div:nth-of-type(4n-2){
+.comments div:nth-of-type(4n-2){
   background-color: #eeeeee;
 }
-.comments .row div:nth-of-type(4n-1) {
+.comments div:nth-of-type(4n-1) {
   background-color: #dddddd;
 }
-.comments .row div:nth-of-type(4n){
+.comments div:nth-of-type(4n){
   background-color: #dddddd;
 }
 
 /* For medium screen */    
 @media (min-width: 768px) {
-.comments .row div:nth-of-type(4n-3) {
+.comments div:nth-of-type(4n-3) {
   background-color: #eeeeee;
 }
-.comments .row div:nth-of-type(4n-2){
+.comments div:nth-of-type(4n-2){
   background-color: #eeeeee;
 }
-.comments .row div:nth-of-type(4n-1) {
+.comments div:nth-of-type(4n-1) {
   background-color: #dddddd;
 }
-.comments .row div:nth-of-type(4n){
+.comments div:nth-of-type(4n){
   background-color: #dddddd;
+}
+
+.comments {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.comments:before,
+.comments:after {
+  display: table;
+  content: " ";
+}
+
+.comments:after {
+  clear: both;
+}
+
+.comments:before,
+.comments:after {
+  display: table;
+  content: " ";
+}
+
+.comments:after {
+  clear: both;
 }
 
 .comments .comments-title{
@@ -137,5 +162,5 @@ input[type="checkbox"].input-validation-error {
 	text-transform:uppercase;
 	background:#ccc;
 	color:#fff;
-	padding:18px 18px 15px;
-	}
+	padding:15px 15px 15px;
+}
