@@ -39,14 +39,13 @@ class UserRegistrationForm(forms.ModelForm):
 			if self.cleaned_data['password1'] != self.cleaned_data['password2']:
 				raise forms.ValidationError(_("The two password fields did not match."))
 		return self.cleaned_data
-		
-		
-gender_choices = (		
-	('M', 'Male'),
-	('F', 'Female'),
-)
+
 	
 class UserProfileForm(forms.ModelForm):
+	gender_choices = (		
+		('M', 'Male'),
+		('F', 'Female'),
+	)
 	gender = forms.ChoiceField(label='Please indicate a gender', choices=gender_choices, widget=forms.RadioSelect())
 	class Meta:
 		model = UserProfile

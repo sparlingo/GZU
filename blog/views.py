@@ -1,4 +1,4 @@
-﻿from django.shortcuts import render, render_to_response, get_object_or_404, redirect
+﻿from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
@@ -10,28 +10,30 @@ from django.contrib import messages
 from datetime import datetime
 from django.utils import timezone
 from .models import Post, Comment, Feedback, UserProfile
-from .forms import PostForm, CommentForm, FeedbackForm, UserRegistrationForm, UserProfileForm
+from .forms import *
 
 # User Views
 
 @csrf_protect
 def register(request): #Clean this up later, KS 2015/09/08
 	if request.method == "POST":
-		form = UserRegistrationForm(request.POST, instance=request.user)
-		form_profile = UserProfileForm(request.POST, instance=request.user.profile)
+		form = UserRegistrationForm(request.POST)
+		form_profile = UserProfileForm(request.POST)
 		if form.is_valid() and form_profile.is_valid():
 			# Save to the auth_user table
 			user = User.objects.create_user(
-			username = form.cleaned_data['username'],
-			password = form.cleaned_data['password1'],
-			email = form.cleaned_data['email'],
+				username = form.cleaned_data['username'],
+				password = form.cleaned_data['password1'],
+				email = form.cleaned_data['email'],
 			)
 			# login the new user, might want to add email authentication in the future
-			user = authenticate(username=request.POST['username'],password=request.POST['password1'])
+			new_user = authenticate(username=request.POST['username'],password=request.POST['password1'])
 			# Save to the user_profile table
-			form_profile.save()
+			profile = form_profile.save(commit=False)
+			profile.user = user
+			profile.save()
 			if user.is_active:
-				login(request, user)
+				login(request, new_user)
 				messages.add_message(request, messages.SUCCESS, "You are now logged into your new account")
 				return HttpResponseRedirect('/')
 			else:
@@ -47,7 +49,7 @@ def register(request): #Clean this up later, KS 2015/09/08
 			'year': datetime.now().year,
 		})
 		
-""""
+"""
 # Blog Views
 @login_required
 def post_new(request):
@@ -62,8 +64,7 @@ def post_new(request):
 		else:
 			form = PostForm()
 			return render(request, 'blog/post_new.html', {'form': form})
-"""
-"""	I'll update this later - KS, Aug 24, 2015
+
 def post_edit(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	if request.method == "POST":

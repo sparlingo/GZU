@@ -43,7 +43,7 @@ urlpatterns = [
     url(r'^about$', 'blog.views.about', name='about'),
     
 	# User URLs
-	url(r'^register$', 'blog.views.register', name='register'), # need to move template to a "user" folder
+	url(r'^register$', 'blog.views.register', name='register'),
 	url(r'^login$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
 ]
