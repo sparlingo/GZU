@@ -46,7 +46,9 @@ class UserProfileForm(forms.ModelForm):
 		('M', 'Male'),
 		('F', 'Female'),
 	)
-	gender = forms.ChoiceField(label='Please indicate a gender', choices=gender_choices, widget=forms.RadioSelect())
+	gender = forms.ChoiceField(
+		label='Please indicate a gender', choices=gender_choices, widget=forms.RadioSelect()
+	)
 	class Meta:
 		model = UserProfile
 		fields = ('gender', )

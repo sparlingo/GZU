@@ -49,7 +49,7 @@ def register(request): #Clean this up later, KS 2015/09/08
 			'year': datetime.now().year,
 		})
 		
-"""
+
 # Blog Views
 @login_required
 def post_new(request):
@@ -60,11 +60,16 @@ def post_new(request):
 			post.author = request.user
 			post.published_date = timezone.now()
 			post.save()
-			return redirect('blog.views.post_detail', pk=post.pk)
-		else:
-			form = PostForm()
-			return render(request, 'blog/post_new.html', {'form': form})
-
+			return HttpResponseRedirect('/')
+	else:
+		form = PostForm()
+		return render(request, 'blog/post_new.html', 
+			{
+			'form': form,
+			'title': 'Create a news post',
+			}
+		)
+"""
 def post_edit(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	if request.method == "POST":
