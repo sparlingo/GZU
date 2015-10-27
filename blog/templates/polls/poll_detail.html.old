@@ -10,7 +10,7 @@
 <div class="btn-group">
 {% for choice in question.choice_set.all %}
 	<label class="btn btn-default">
-	<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+	<input type="checkbox" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
     <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
 	</label>
 {% endfor %}

@@ -5,10 +5,11 @@
 <h3>{{ question.question_reference }}</h3>
 
 <ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% for choice in choices %}
+    <li>{{ choice.choice_text }} -- {{ choice.vote_num }} vote{{ choice.vote_num|pluralize }}</li>
 {% endfor %}
 </ul>
+
 
 <br />
 <h4><a href="/">Back to main page</a></h4>

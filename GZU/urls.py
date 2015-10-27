@@ -25,6 +25,7 @@ urlpatterns = [
 	# Blog URLs
 	url(r'^$', 'blog.views.post_index', name='home'),
 	url(r'^post/(?P<pk>[0-9]+)/$', 'blog.views.post_view', name='post_view'),
+	url(r'^post/edit/(?P<pk>[0-9]+)/$', 'blog.views.post_edit', name='post_edit'),
 	url(r'^post/new/$', 'blog.views.post_new', name='post_new'),
 	
 	# Comments
@@ -34,10 +35,10 @@ urlpatterns = [
 	url(r'^photos$', 'blog.views.photos', name='photos'),
 	
 	# Poll URLs
-	url(r'^polls$', 'polls.views.poll_index', name='polls'),
-	url(r'^poll/(?P<question_id>[0-9]+)/$', 'polls.views.poll_detail', name='poll_detail'),
-	url(r'^poll/(?P<question_id>[0-9]+)/results/$', 'polls.views.poll_results', name='poll_results'),
-	url(r'^poll/(?P<question_id>[0-9]+)/vote/$', 'polls.views.poll_vote', name='poll_vote'),
+	url(r'^polls$', 'blog.views.poll_index', name='polls'),
+	url(r'^poll/(?P<question_id>[0-9]+)/$', 'blog.views.poll_detail', name='poll_detail'),
+	url(r'^poll/(?P<question_id>[0-9]+)/results/$', 'blog.views.poll_results', name='poll_results'),
+	#url(r'^poll/(?P<question_id>[0-9]+)/vote/$', 'polls.views.poll_vote', name='poll_vote'),
 	
 	# Static pages URLs
     url(r'^contact$', 'blog.views.contact', name='contact'),

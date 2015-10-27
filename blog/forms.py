@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
-from .models import Post, Comment, Feedback, UserProfile
+from .models import *
 
 
 class PostForm(forms.ModelForm):
@@ -47,8 +47,16 @@ class UserProfileForm(forms.ModelForm):
 		('F', 'Female'),
 	)
 	gender = forms.ChoiceField(
-		label='Please indicate a gender', choices=gender_choices, widget=forms.RadioSelect()
+		label='Please indicate a gender', 
+	        choices=gender_choices, 
+	        widget=forms.RadioSelect()
 	)
 	class Meta:
 		model = UserProfile
 		fields = ('gender', )
+		
+class VoteForm(forms.ModelForm):
+	class Meta:
+		model = Vote
+		exclude = ('user',)
+		#widgets = {'choice':forms.CheckboxSelectMultiple()}

@@ -37,7 +37,7 @@ class UserProfile(models.Model):
 		(FEMALE, 'Female'),
 	)
 	gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=MALE)
-User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u) [0])
+	User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u) [0])
 		
 class Feedback(models.Model):
 	text = models.TextField()
@@ -45,3 +45,26 @@ class Feedback(models.Model):
 	
 	def __str__(self):
 		return self.text[:25]
+	
+# Models for polls
+class Question(models.Model):
+	question_text = models.CharField(max_length=100)
+	question_reference = models.CharField(max_length=50)
+	pub_date = models.DateTimeField('date published')
+
+	def __str__(self):
+		return self.question_text
+
+class Choice(models.Model):
+	question = models.ForeignKey(Question)
+	choice_text = models.CharField(max_length=200)
+
+	def __str__(self):
+		return self.choice_text
+
+class Vote(models.Model):
+	user = models.ForeignKey(User)
+	choice = models.ManyToManyField(Choice)
+	
+	class Meta:
+		ordering = ('user',)

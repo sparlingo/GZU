@@ -37,11 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	#'markdown',
-	#'south',
+    'markdown',
     'blog',
-    'polls',
-	'league',
+    'league',
 	
 )
 
