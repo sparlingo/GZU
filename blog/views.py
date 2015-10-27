@@ -234,7 +234,6 @@ def poll_results(request, question_id):
 	for choice in choices:
 		votes = Vote.objects.filter(choice__id=choice.id)
 		choice.vote_num = len(votes)
-	#votes = Vote.objects.all()
 	return render(request,
 	        'polls/poll_results.html',
 		{
