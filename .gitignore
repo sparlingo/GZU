@@ -1,6 +1,0 @@
-*.pyc
-__pycache__
-gzuvenv
-settings.py
-.DS_Store
-db.sqlite3
