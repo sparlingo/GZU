@@ -66,5 +66,3 @@ class Vote(models.Model):
 	user = models.ForeignKey(User)
 	choice = models.ManyToManyField(Choice)
 	
-	class Meta:
-		ordering = ('user',)

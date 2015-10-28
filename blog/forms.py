@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
-from .models import *
+from .models import Post, Comment, UserProfile, Feedback, Question, Choice, Vote
 
 
 class PostForm(forms.ModelForm):
@@ -30,7 +30,7 @@ class UserRegistrationForm(forms.ModelForm):
 	def clean_username(self):
 		try:
 			user = User.objects.get(username__iexact=self.cleaned_data['username'])
-		except User.DoesNotExist:
+		except user.DoesNotExist:
 			return self.cleaned_data['username']
 		raise forms.ValidationError(_("The username already exists. Please try another one."))
  
@@ -59,4 +59,3 @@ class VoteForm(forms.ModelForm):
 	class Meta:
 		model = Vote
 		exclude = ('user',)
-		#widgets = {'choice':forms.CheckboxSelectMultiple()}

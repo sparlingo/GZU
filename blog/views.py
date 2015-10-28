@@ -9,8 +9,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from datetime import datetime
 from django.utils import timezone
-from .models import *
-from .forms import *
+from .models import Post, Comment, UserProfile, Feedback, Question, Choice, Vote
+from .forms import PostForm, CommentForm, FeedbackForm, UserRegistrationForm, UserProfileForm, VoteForm
 
 # User Views
 
@@ -140,6 +140,7 @@ def contact(request): # This also handles the feedback form
 		form = FeedbackForm(request.POST)
 		if form.is_valid():
 			feedback = form.save()
+			feedback.save()
 			messages.add_message(request, messages.SUCCESS, "Thank you for telling us what you think, we appreciate it :)")
 			return redirect('blog.views.contact')
 	else:
