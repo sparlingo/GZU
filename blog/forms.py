@@ -1,7 +1,9 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
-from .models import Post, Comment, UserProfile, Feedback, Question, Choice, Vote
+
+from .models import Post, Comment, UserProfile, Feedback
+from .models import Question, Choice, Vote
 
 
 class PostForm(forms.ModelForm):

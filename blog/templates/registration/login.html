@@ -26,6 +26,9 @@
                     <div class="col-md-offset-2 col-md-8">
                         <input type="hidden" name="next" value="{{ next }}" />
                         <input type="submit" value="Log in" class="btn btn-primary btn-large" />
+                        <label class="btn btn-default">
+                            <a href="{% url 'register' %}">OR register an account</a>
+                        </label>
                     </div>
                 </div>
                 {% if form.errors %}

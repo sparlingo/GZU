@@ -6,7 +6,7 @@ from django.utils import timezone
 # Models for blog
 class Post(models.Model):
 	author = models.ForeignKey('auth.User')
-	title = models.CharField(max_length=80,blank=False, null=False)
+	title = models.CharField(max_length=80, blank=False, null=False)
 	text = models.TextField(max_length=2000,)
 	created_date = models.DateTimeField(default=timezone.now)
 	published_date = models.DateTimeField(blank=True, null=True)
@@ -50,7 +50,9 @@ class Feedback(models.Model):
 class Question(models.Model):
 	question_text = models.CharField(max_length=100)
 	question_reference = models.CharField(max_length=50)
+	question_set = models.PositiveSmallIntegerField('question set', blank=True, null=True)
 	pub_date = models.DateTimeField('date published')
+	expire_date = models.DateTimeField('expiry date')
 
 	def __str__(self):
 		return self.question_text

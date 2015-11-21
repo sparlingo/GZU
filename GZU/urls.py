@@ -28,6 +28,9 @@ urlpatterns = [
 	url(r'^post/edit/(?P<pk>[0-9]+)/$', 'blog.views.post_edit', name='post_edit'),
 	url(r'^post/new/$', 'blog.views.post_new', name='post_new'),
 	
+	# League URLs
+	url(r'^league/player/new/$', 'league.views.player_new', name='player_new'),
+	
 	# Comments
 	url(r'^comment_add/(?P<pk>[0-9]+)$', 'blog.views.comment_add', name='comment_add'),
 	

@@ -1,0 +1,27 @@
+{% extends "blog/layout.html" %}
+{% block content %}
+
+<h2>{{ title }}</h2>
+<h4>{{ message }}</h4>
+
+<section id="playerForm">
+	<form method="POST" action="{% url "league.views.player_new" %}" class="player-form">
+	{% csrf_token %}
+		<div class="form-group player-form">
+			<p>Fall league will be on Sunday mornings at Guang Ti Sport University,
+				starting on November 29, 2015 and running for 10 weeks. There will be
+				4 teams, 5 on 5, with 3 round-robins and then playoffs. This will be a 
+				parity league, so player stats will be kept and used to move players 
+				between teams between round-robins. Tick the box below if you want to
+				play!</p>
+			<label for="id_agree" class="col-md-2 control-label">
+				<input type="checkbox" id="id_agree" value="yes" name="id_agree" />
+				I want to play!
+			</label><br />
+		</div>
+		<button type="submit" class="btn btn-default">Register</button>
+	</form>
+</section>
+
+<h4><a href="/">Back to main page</a></h4>
+{% endblock %}
