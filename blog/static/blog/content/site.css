@@ -1,0 +1,166 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* For the jumbotron */
+.jumbotron {
+  padding-top: 50px;
+  padding-bottom: 300px;
+  padding-left: 15px;
+  margin-bottom: 20px;
+  font-size: 54px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #eeeeee;
+  background: url('../images/bannermini.JPG');
+  color: #ffffff;
+}
+
+.jumbotron h1 {
+  line-height: 1;
+  color: inherit;
+  font-size: inherit;
+}
+
+.jumbotron p {
+  line-height: 1.4;
+}
+
+.container .jumbotron {
+  border-radius: 6px;
+}
+
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 8px;
+    padding-bottom: 330px;
+	background: url('../images/banner.JPG');
+	
+  }
+  .container .jumbotron {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+  .jumbotron h1 {
+    font-size: 58px;
+	color: #ffffff;
+	padding-top: 12px;
+  }
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* From Djangogirls tutorial */
+.date {
+    float: right;
+    color: #828282;
+}
+
+.post {
+    margin-bottom: 70px;
+}
+
+.save {
+    margin-top: 10px;
+}
+
+/* Comments styling */
+/* For small screen */
+.comments div:nth-of-type(4n-3) {
+  background-color: #eeeeee;
+}
+.comments div:nth-of-type(4n-2){
+  background-color: #eeeeee;
+}
+.comments div:nth-of-type(4n-1) {
+  background-color: #dddddd;
+}
+.comments div:nth-of-type(4n){
+  background-color: #dddddd;
+}
+
+/* For medium screen */    
+@media (min-width: 768px) {
+.comments div:nth-of-type(4n-3) {
+  background-color: #eeeeee;
+}
+.comments div:nth-of-type(4n-2){
+  background-color: #eeeeee;
+}
+.comments div:nth-of-type(4n-1) {
+  background-color: #dddddd;
+}
+.comments div:nth-of-type(4n){
+  background-color: #dddddd;
+}
+
+.comments {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.comments:before,
+.comments:after {
+  display: table;
+  content: " ";
+}
+
+.comments:after {
+  clear: both;
+}
+
+.comments:before,
+.comments:after {
+  display: table;
+  content: " ";
+}
+
+.comments:after {
+  clear: both;
+}
+
+.comments .comments-title{
+	margin-bottom:8px;
+	text-transform:uppercase;
+	background:#ccc;
+	color:#fff;
+	padding:15px 15px 15px;
+}

@@ -1,0 +1,21 @@
+{% extends "blog/layout.html" %}
+{% block content %}
+
+<h2>{{ title }}</h2>
+<h4>{{ message }}</h4>
+
+<section id="postForm">
+	<form method="POST" action="{% url "blog.views.post_new" %}" class="post-form">
+	{% csrf_token %}
+		<div class="form-group post-form-post">
+			<label for="title">Title of the post</label>
+			<textarea class="form-control" id="title" name="title" cols="20" rows="2"></textarea>
+			<label for="body">Body of the post</label>
+			<textarea class="form-control" id="text" name="text" cols="100" rows="12"></textarea>
+		</div>
+		<button type="submit" class="btn btn-default">Save</button>
+	</form>
+</section>
+
+<h4><a href="/">Back to main page</a></h4>
+{% endblock %}

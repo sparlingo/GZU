@@ -1,0 +1,18 @@
+{% extends "blog/layout.html" %}
+{% block content %}
+
+<h1>{{ question.question_text }}</h1>
+<h3>{{ question.question_reference }}</h3>
+
+<ul>
+{% for choice in choices %}
+    <li>{{ choice.choice_text }} -- {{ choice.vote_num }} vote{{ choice.vote_num|pluralize }}</li>
+{% endfor %}
+</ul>
+
+
+<br />
+<h4><a href="/">Back to main page</a></h4>
+<h4><a href="/polls">Back to poll index</a></h4>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "blog/layout.html" %}
+{% block content %}
+
+<h2>{{ title }}</h2>
+<h4>{{ message }}</h4>
+
+<section id="playerForm">
+	<form method="POST" action="{% url "league.views.player_new" %}" class="player-form">
+	{% csrf_token %}
+		<div class="form-group player-form">
+			<p>GZU Winter League will be on 11/29, 12/06, 12/13, 12/20, 12/27 at Guang 
+				Ti Sport University. There will be 4 teams, 7 on 7, with adjustments to
+				teams after the first week. Player stats will be kept so that players
+				can judge their progress. Full league rules will be posted on this website.</p>
+			<p>Please tell your captain each week whether or not you can attend the game, if not,
+				please find a replacement of suitable skill level, however it is the captain's
+				responsbility to field a full team each week.</p>
+			<p>The cost will be 60 RMB, which will go mostly towards player prizes and a 
+				dinner at the end of the season.</p>
+			<p>The first 60 players to register here will have priority, please register only if
+				you can attend at least 3 games, and preferably all games. Depending on 
+				gender ratio, even if you register here we cannot guarantee a spot.</p>
+			<p>Most importantly: have fun!</p>
+			<label for="id_agree" class="col-md-2 control-label">
+				<input type="checkbox" id="id_agree" value="yes" name="id_agree" />
+				I want to play!我想玩!
+
+			</label><br />
+		</div>
+		<button type="submit" class="btn btn-default">Register/注册</button>
+	</form>
+</section>
+
+<h4><a href="/">Back to main page</a></h4>
+{% endblock %}
