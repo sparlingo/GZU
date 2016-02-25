@@ -37,9 +37,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'markdown',
+    'django_tables2',
     'blog',
     'league',
+    #'photos',
+    #'wechatpay',
 	
 )
 
@@ -62,7 +64,7 @@ LOGIN_URL = 'django.contrib.auth.views.login'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
             ],
         },
     },
@@ -120,3 +123,26 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+#STATICFILES_FINDERS = (
+#    'django.contrib.staticfiles.finders.FileSystemFinder',
+#    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#)
+
+# Configuration for Wechat Payments
+#WC_PAY_APPID = 'wx46c1efa6220b6ee5'
+#WC_PAY_MCHID = ''
+#WC_PAY_APPSECRET = ''
+#WC_PAY_KEY = ''
+#WC_ID = 'gh_4f8ffa3820b2'
+#WC_BILLS_PATH ''
+#WC_PAY_JSAPI_TICKET_URL ''
+
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'photos/static')
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+#MEDIA_URL = '/media/'

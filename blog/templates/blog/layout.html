@@ -1,19 +1,18 @@
-﻿<!DOCTYPE html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block mapstuff %}{% endblock %}
     <title>{{ title }} - GZU</title>
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'blog/content/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'blog/content/site.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'blog/content/slick.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'blog/content/slick-theme.css' %}" />
-    <script src="{% static 'blog/scripts/modernizr-2.6.2.js' %}"></script>
-	<link rel="shortcut icon" type="image/x-icon" href="{% static 'blog/images/favicon.png' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/content/site-smallscreen.css' %}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'blog/images/favicon.png' %}" />
 </head>
 
-<body>
+<body onload="GetMap();">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -26,11 +25,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
-					<li><a href="{% url 'photos' %}">Photos</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">League<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'schedule' '1' %}">Schedule</a></li>
+                            <li><a href="{% url 'scores' 1 %}">Scores</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+					
 					<li><a href="{% url 'polls' %}">Polls</a></li>
-					<li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+					<li><a href="{% url 'about' %}">About</a></li>
                 </ul>
                 {% include 'blog/loginpartial.html' %}
             </div>
@@ -47,20 +54,21 @@
 					</div>
 				{% endfor %}
 		{% endif %}
-	</div>
-	{% block content %}{% endblock %}
+	</div> 
+	{% block content %}{% endblock content %}
         <hr/>
         <footer>
             <p>&copy; {{ year }} - GZU</p>
         </footer>
     </div>
 
-{% block scripts %}{% endblock %}
+    
     <script src="{% static 'blog/scripts/jquery-1.11.3.min.js' %}"></script>
 	<script src="{% static 'blog/scripts/jquery-migrate.js' %}"></script>
-	<script src="{% static 'blog/scripts/slick.min.js' %}"></script>
     <script src="{% static 'blog/scripts/bootstrap.js' %}"></script>
     <script src="{% static 'blog/scripts/respond.js' %}"></script>
-	<script src="{% static 'blog/scripts/gallery.js' %}"></script>
+    <script src="{% static 'blog/scripts/modernizr-2.6.2.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+
 </body>
 </html>

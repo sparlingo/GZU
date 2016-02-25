@@ -1,0 +1,20 @@
+{% extends "blog/layout.html" %}
+{% block content %}
+
+<h1>{{ title }}</h1>
+<h3>{{ thisgame.game_start }} @ {{ thisgame.field }}</h3>
+
+{% if thisgame.awayscore != None and thisgame.homescore != None %}
+<div id="hometeam">{{ thisgame.hometeam }}</div>
+<div class="box awayteam-{{ thisgame.awayscore }}"></div>
+<div class="skewer">
+    <div class="box hometeam-{{ thisgame.homescore }}"></div>
+</div>
+<div id="awayteam">{{ thisgame.awayteam }}</div>
+{% endif %}
+
+<br />
+<h4><a href="/">Back to main page</a></h4>
+
+
+{% endblock %}

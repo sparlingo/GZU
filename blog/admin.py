@@ -8,7 +8,7 @@ class ChoiceInLine(admin.TabularInline):
 class QuestionAdmin(admin.ModelAdmin):
 	fieldsets = [
 	('Question to ask', {'fields': ['question_text', 'question_reference']}),
-	('Date information', {'fields': ['pub_date']}),
+	('Date information', {'fields': ['pub_date', 'expire_date']}),
 	]
 	inlines = [ChoiceInLine]
 

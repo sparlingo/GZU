@@ -5,7 +5,7 @@
 <h4>{{ message }}</h4>
 
 <section id="postForm">
-	<form method="POST" action="{% url "blog.views.post_new" %}" class="post-form">
+	<form method="POST" action="{% url 'post_new' %}" class="post-form">
 	{% csrf_token %}
 		<div class="form-group post-form-post">
 			<label for="title">Title of the post</label>

@@ -1,5 +1,35 @@
 {% extends "blog/layout.html" %}
-
+{% block mapstuff %}
+<script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=en-us,zh-hk"></script>
+<script type="text/javascript">
+    function GetMap()
+    {
+        Microsoft.Maps.loadModule('Microsoft.Maps.Themes.BingTheme', {callback: themesModuleLoaded});
+    }
+    
+    function themesModuleLoaded()
+    {
+        map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), 
+            {credentials:"Ap6LtHfF3dnFGfgp9SXtH5cR5cUe1WwB3ohDYNp6JnCoajMlpJjIDce4qvoQBFvl",
+            mapTypeId: Microsoft.Maps.MapTypeId.birdseye, 
+            });
+            
+        
+        // Pushpin location
+        var loc = new Microsoft.Maps.Location(23.1444, 113.3121);
+        
+        // Make the pin
+        var pin = new Microsoft.Maps.Pushpin(loc);
+ 
+        // Add the pushpin
+        map.entities.push(pin);
+        
+        // Center the map
+        map.setView({center: loc, zoom: 16});
+    }
+ 
+</script>
+{% endblock %}
 {% block content %}
 
 
@@ -10,5 +40,9 @@
 
 <p>Along the top of this page are links where you can find information about either leagues or tournaments that are in or around Guangzhou. </p>
 
+<br />
+
+<div id='mapDiv' style="position:relative; width:500px; height:500px;"></div>
+<h4>GuangTi Sports University</h4>
 	
 {% endblock %}

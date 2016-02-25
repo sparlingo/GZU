@@ -16,35 +16,6 @@ textarea {
     max-width: 280px;
 }
 
-/* For the jumbotron */
-.jumbotron {
-  padding-top: 50px;
-  padding-bottom: 300px;
-  padding-left: 15px;
-  margin-bottom: 20px;
-  font-size: 54px;
-  font-weight: 200;
-  line-height: 2.1428571435;
-  color: inherit;
-  background-color: #eeeeee;
-  background: url('../images/bannermini.JPG');
-  color: #ffffff;
-}
-
-.jumbotron h1 {
-  line-height: 1;
-  color: inherit;
-  font-size: inherit;
-}
-
-.jumbotron p {
-  line-height: 1.4;
-}
-
-.container .jumbotron {
-  border-radius: 6px;
-}
-
 @media screen and (min-width: 768px) {
   .jumbotron {
     padding-top: 8px;
@@ -102,20 +73,6 @@ input[type="checkbox"].input-validation-error {
     margin-top: 10px;
 }
 
-/* Comments styling */
-/* For small screen */
-.comments div:nth-of-type(4n-3) {
-  background-color: #eeeeee;
-}
-.comments div:nth-of-type(4n-2){
-  background-color: #eeeeee;
-}
-.comments div:nth-of-type(4n-1) {
-  background-color: #dddddd;
-}
-.comments div:nth-of-type(4n){
-  background-color: #dddddd;
-}
 
 /* For medium screen */    
 @media (min-width: 768px) {
@@ -164,3 +121,507 @@ input[type="checkbox"].input-validation-error {
 	color:#fff;
 	padding:15px 15px 15px;
 }
+
+/* Styling for tables */
+th {
+    background-color: aliceblue;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+td {
+    padding: 3px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    
+}
+tr:nth-child(even) {
+    background-color: lightgrey;
+}
+
+
+#box {
+  position: relative;
+  width: 77%;
+  background: #ddd;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 2em 1.5em;
+  color: rgba(0,0,0, .8);
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.5;
+  margin: 60px auto;
+}
+
+
+#box:before, #box:after {
+  z-index: -1; 
+  position: absolute; 
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%; 
+  top: 80%;
+  max-width:600px;
+  background: rgba(0, 0, 0, 0.7); 
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  transform: rotate(-3deg);
+}
+
+#box:after {
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+
+/* CSS for the score page */
+.skewer {
+	/* set initial width */
+	width: 58%;
+		   
+	/* hide the content that overflows (to allow second box to show through) */
+	overflow: hidden;
+	display: inline-block;
+		   
+	/* skew container so that it has angled edge, and set up transition */
+	transform: skewX(-20deg);
+	transition: width 0.6s ease-in-out;
+		  
+	/* give negative margin to remove gap caused by left hand skew */
+	margin-left: -76px;
+	border-right: 10px solid ghostwhite;
+		   
+	/* hide pointer events for unseen content */
+	pointer-events: none;
+}
+		
+/* set the size of the boxes and any decoration */
+.box { 
+	width: 88%;
+	height: 155px;
+	border-radius: .5em;
+}
+		
+		
+.hometeam-1 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/1.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-1 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/1.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-2 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/2.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-2 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/2.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-3 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/3.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-3 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/3.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-4 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/4.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-4 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/4.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-5 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/5.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-5 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/5.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-6 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/6.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-6 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/6.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-7 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/7.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-7 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/7.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-8 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/8.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-8 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/8.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-9 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/9.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-9 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/9.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-10 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/10.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-10 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/10.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-11 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/11.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-11 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/11.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-12 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/12.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-12 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/12.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-13 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/13.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-13 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/13.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-14 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/14.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-14 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/14.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-15 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/15.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-15 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/15.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-16 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/16.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-16 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/16.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-17 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/17.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-17 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/17.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-18 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/18.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-18 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/18.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-19 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/19.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-19 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/19.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.hometeam-20 {
+	/* skew back by negative of parent’s skew so contents is upright */
+	transform: skewX(20deg);
+    padding: 5px;
+	background-image: url("../images/numbers/20.jpg");
+	margin-left: 76px; /* give margin to push content away from left slanted edge */
+	pointer-events: auto;	/* allow pointer events for the box */
+}
+		
+.awayteam-20 {
+	background: whitesmoke;
+    text-align: right;
+    padding-top: 124px;
+    padding-right: 6px;
+    background-image: url("../images/numbers/20.jpg");
+ 
+	position: absolute; 	/* remove from flow so sunset is placed on top */
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+		
+/* make first box bigger on hover, and smaller when hover second box 
+.slider:hover {
+	width: 76%;
+}
+		
+.awayteam:hover + .slider { 
+	 width: 25%;
+}
+*/
+
+#hometeam {
+    text-align: left;
+    font-size: 30px;
+}
+
+#awayteam {
+    text-align: right;
+    text-indent: 60px;
+    font-size: 30px;
+}
+
+

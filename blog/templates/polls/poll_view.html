@@ -9,7 +9,7 @@
 <div class="row">
 	<div class="col-md-8">
 		<section id="voteForm">
-		<form method="POST" action="{% url 'poll_detail' question.id %}" class="form-horizontal">
+		<form method="POST" action="{% url 'poll_view' question.id %}" class="form-horizontal">
 			{% csrf_token %}
 			<div class="btn-group">
 			{% for choice in choices %}
@@ -24,4 +24,8 @@
 		</form>
 <br />
 
+{% include 'blog/commentspartial.html' with question=question type="question" %}
 {% endblock %}
+
+<h4><a href="/">Back to main page</a></h4>
+<h4><a href="/polls">Back to poll index</a></h4>

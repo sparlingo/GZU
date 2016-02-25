@@ -1,0 +1,41 @@
+{% extends "blog/layout.html" %}
+{% load staticfiles %}
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/content/bootstrap-slider.css' %}" />
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'blog/scripts/slider.js' %}"></script>
+    <script src="{% static 'blog/scripts/custom-slider.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+<h2>{{ title }}</h2>
+<br />
+
+
+<div class="slider">
+    <form method="POST" action="{% url 'stats_edit' playerstats.game_id playerstats.team_id playerstats.player_id  %}">
+    {% csrf_token %}
+        <input id="ex4" data-slider-id="ex4Slider" name="assists" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1">
+        <span id="ex4CurrentSliderValueLabel">Assists: <span id="ex4SliderVal"></span></span>
+        <br /><br /><br />
+        <input id="ex5" data-slider-id="ex5Slider" name="points" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1">
+        <span id="ex5CurrentSliderValueLabel">Points: <span id="ex5SliderVal"></span></span>
+        <br /><br /><br />
+        <input id="ex6" data-slider-id="ex6Slider" name="defences" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1">
+        <span id="ex6CurrentSliderValueLabel">Defences: <span id="ex6SliderVal"></span></span>
+        <br /><br /><br />
+        <input id="ex7" data-slider-id="ex7Slider" name="drops" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1">
+        <span id="ex7CurrentSliderValueLabel">Drops: <span id="ex7SliderVal"></span></span>
+        <br /><br /><br />
+        <input id="ex8" data-slider-id="ex8Slider" name="throwaways" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1">
+        <span id="ex8CurrentSliderValueLabel">Throwaways: <span id="ex8SliderVal"></span></span>
+        <br /><br /><br />
+        <button type="submit" class="btn btn-primary btn-large" />That was it!</button>
+    </form>
+</div>
+
+
+<br />
+<h4><a href="/">Back to main page</a></h4>
+{% endblock %}

@@ -4,32 +4,54 @@
 <h2>{{ title }}</h2>
 <h4>{{ message }}</h4>
 
-<section id="playerForm">
-	<form method="POST" action="{% url "league.views.player_new" %}" class="player-form">
+<div class="col-md-12">
+
+	<form method="POST" action="{% url 'league.views.player_new' %}" class="player-form">
 	{% csrf_token %}
 		<div class="form-group player-form">
-			<p>GZU Winter League will be on 11/29, 12/06, 12/13, 12/20, 12/27 at Guang 
-				Ti Sport University. There will be 4 teams, 7 on 7, with adjustments to
-				teams after the first week. Player stats will be kept so that players
-				can judge their progress. Full league rules will be posted on this website.</p>
-			<p>Please tell your captain each week whether or not you can attend the game, if not,
-				please find a replacement of suitable skill level, however it is the captain's
-				responsbility to field a full team each week.</p>
-			<p>The cost will be 60 RMB, which will go mostly towards player prizes and a 
-				dinner at the end of the season.</p>
-			<p>The first 60 players to register here will have priority, please register only if
-				you can attend at least 3 games, and preferably all games. Depending on 
-				gender ratio, even if you register here we cannot guarantee a spot.</p>
-			<p>Most importantly: have fun!</p>
-			<label for="id_agree" class="col-md-2 control-label">
-				<input type="checkbox" id="id_agree" value="yes" name="id_agree" />
-				I want to play!我想玩!
-
-			</label><br />
+			<p>GZU "Baby" League will begin on March 6, 2016 and run for ~10 weeks at GuangTi Sport University. 
+                There will be 4 teams, 7 on 7, and this will be a PARITY league. Player stats will be kept so that 
+                players can judge their progress, and adjustments will be made to the teams to ensure balanced, 
+                competitive teams.
+                 广州Baby League（春季联赛）3月6日即将打响，本次春季联赛将继续在广体进行，计划持续10周。
+                 联赛初步设定采用四支队伍、七人制形式（7 on 7）、匀势规则、循环赛制进行。
+                 届时我们将对每个队员进行相关技术的数据统计，每周赛后根据比赛进程，队间可能被强制互换选手，
+                 以达到四支队伍实力均衡的效果
+            </p>
+			<p>Please tell your captain each week whether or not you can attend the game, if not please find 
+                a replacement of suitable skill level, however it is the captain's responsibility to field a 
+                full team each week.
+                请各位队员每周赛前尽早告知你的队长你本周是否能参赛，如果不能参赛请找一个飞盘水平与你相近的盘友顶替，
+                每队队长有职责召集队内所有选手/替补选手准时参加每周的赛事，保证联赛顺利进行。
+            </p>
+			<p>The cost will be 100 RMB, which will go mostly towards player prizes and a dinner at the 
+                end of the season.
+                联赛报名费为100元人民币，报名费将主要用于整个联赛结束后的奖品以及聚餐费用。
+            </p>
+            <p>The first 60 players to register here will have priority, 36 men and 24 ladies.
+            前60名报名选手（前36名男选手和前24名女选手）将享受一定的特权（待定）。
+            </p>
+			<p>Most importantly: have fun!
+            当然，友谊第一比赛第二，联赛最重要的目的还是：和盘友们在一起，玩玩玩，开心开心开心！
+            </p>
+            <div class="form-group">
+            <label for="id_first_year_frisbee" class="col-md-3 control-label">First year playing frisbee/那一年开始玩飞盘</label>
+                <div class="col-md-6">
+                    {{ form.first_year_frisbee }}
+                </div>
+            </div>
+            <br /><br /><br />
+			<label for="id_agree" class="col-md-3 control-label">I want to play!我想玩!</label>
+                <div class="col-md-6">
+				    <input type="checkbox" id="id_agree" required="true" name="id_agree" />
+                </div>
+            <br />
 		</div>
+        <br>
 		<button type="submit" class="btn btn-default">Register/注册</button>
 	</form>
-</section>
+
+</div>
 
 <h4><a href="/">Back to main page</a></h4>
 {% endblock %}

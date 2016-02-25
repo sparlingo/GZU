@@ -1,0 +1,52 @@
+{% extends "blog/layout.html" %}
+{% load staticfiles %}
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/content/bootstrap-slider.css' %}" />
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'blog/scripts/slider.js' %}"></script>
+    <script src="{% static 'blog/scripts/custom-slider.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+<h2>{{ title }}</h2>
+<br />
+
+{% if hometeam != None %}
+<div class="slider">
+    <form method="POST" action="{% url 'score_edit' thisgame.id hometeam.id %}">
+    {% csrf_token %}
+        <input id="ex1" data-slider-id="ex1Slider" name="homescore" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1">
+        <span id="ex1CurrentSliderValueLabel">Our Team Score: <span id="ex1SliderVal"></span></span>
+        <br /><br /><br />
+        <input id="ex2" data-slider-id="ex2Slider" name="awayscore" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1">
+        <span id="ex2CurrentSliderValueLabel">Their Team Score: <span id="ex2SliderVal"></span></span>
+        <br /><br /><br />
+        <input id="ex3" data-slider-id="ex3Slider" name="awayspirit" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1">
+        <span id="ex3CurrentSliderValueLabel">Their Team Spirit: <span id="ex3SliderVal"></span></span>
+        <br /><br /><br />
+        <button type="submit" class="btn btn-primary btn-large" />That was the score!</button>
+    </form>
+</div>
+{% endif %}
+{% if awayteam != None %}
+<div class="slider">
+    <form method="POST" action="{% url 'score_edit' thisgame.id awayteam.id %}">
+    {% csrf_token %}
+        <input id="ex1" data-slider-id="ex1Slider" name="homescore" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1">
+        <span id="ex1CurrentSliderValueLabel">Their Team Score: <span id="ex1SliderVal"></span></span>
+        <br /><br /><br />
+        <input id="ex2" data-slider-id="ex2Slider" name="awayscore" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1">
+        <span id="ex2CurrentSliderValueLabel">Our Team Score: <span id="ex2SliderVal"></span></span>
+        <br /><br /><br />
+        <input id="ex3" data-slider-id="ex3Slider" name="homespirit" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1">
+        <span id="ex3CurrentSliderValueLabel">Their Team Spirit: <span id="ex3SliderVal"></span></span>
+        <br /><br /><br />
+        <button type="submit" class="btn btn-primary btn-large" />That was the score!</button>
+    </form>
+</div>
+{% endif %}
+
+<br />
+<h4><a href="/">Back to main page</a></h4>
+{% endblock %}

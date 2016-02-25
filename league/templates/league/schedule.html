@@ -1,0 +1,16 @@
+{% extends "blog/layout.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+
+<h2>{{ title }}</h2>
+<h3>{{ season.year }} {{ season.season_of_the_year }}</h3>
+<br />
+
+<h4>This week's games</h4>
+{% render_table games_thisweek %}
+
+<h4>Next week's games</h4>
+{% render_table games_nextweek %}
+	
+<h4><a href="/">Back to main page</a></h4>
+{% endblock %}

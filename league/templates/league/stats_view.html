@@ -1,0 +1,20 @@
+{% extends "blog/layout.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+
+<h2>{{ title }}</h2>
+<br />
+
+<h3>{{ thisteam.team_name }}</h3>
+{% if user.is_staff %}
+<a class="btn btn-default" href="{% url 'stats_edit' team_id=thisteam.id game_id=thisgame.id %}"><span class="glyphicon glyphicon-pencil"> Edit Stats</span></a>
+{% endif %}
+<h4>{{ thisgame.game_start }} @ {{ thisgame.field }}
+</h4>
+
+{% render_table teamgamestats %}
+
+
+	
+<h4><a href="/">Back to main page</a></h4>
+{% endblock %}

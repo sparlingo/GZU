@@ -10,21 +10,27 @@
 		<div class="comments">
 		<h4 class="comments-title">There are no comments </h4>
 	{% endif %}
-	</div>
-	<section id="commentForm">
-		<form method="POST" action="{% url "blog.views.comment_add" post.id %}" class="comment-form">
-		{% csrf_token %}
+	   </div>
+	<section id="commentForm"> 
+    {% if post %}
+        <form method="POST" action="{% url 'comment_add' post.pk type %}" class="comment-form">
+    {% elif album %}
+        <form method="POST" action="{% url 'comment_add' album.pk type %}" class="comment-form">
+    {% elif question %}
+        <form method="POST" action="{% url 'comment_add' question.pk type %}" class="comment-form">
+    {% endif %}
+        {% csrf_token %}
 			<div class="form-group comment-form-comment">
 				<label for="comment">Add a comment</label>
-				<textarea class="form-control" id="comment" name="text" cols="60" rows="8" aria-requied="true"></textarea>
+				<textarea class="form-control" id="comment" name="text" cols="40" rows="4" aria-requied="true"></textarea>
 			</div>
 			<button type="submit" class="btn btn-default">Save</button>
 		</form>
 	</section>
 {% else %}
 	<div class="comments">
-	<h4 class="comments-title">Hello stranger, want to leave a comment? <a href="{% url 'register' %}">Register</a>
-	or <a href="{% url 'login' %}">login</a></h4>
+	<h4 class="comments-title">Hello stranger, want to leave a comment? <a href="{% url register %}">Register</a>
+	   or <a href="{% url 'login' %}">login</a></h4>
 	{% if comments %}
 		<h4>Comments:</h4>
 		{% for comment in comments %}
@@ -36,4 +42,3 @@
 	{% endif %}
 	</div>
 {% endif %}
-</div>
