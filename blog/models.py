@@ -33,6 +33,8 @@ class UserProfile(models.Model):
     name_international = models.CharField(max_length=15, blank=True, null=True)
     User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u) [0])
 
+    def __str__(self):
+        return self.name
 	
 class Feedback(models.Model):
     text = models.TextField()

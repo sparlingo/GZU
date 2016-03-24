@@ -35,14 +35,15 @@ class Season(models.Model):
 		return self.slug
 		
 class Team(models.Model):
-	captain = models.ForeignKey('auth.User')
-	league = models.ForeignKey(Season)
-	team_name = models.CharField(blank=False, max_length=50)
-	blurb = models.CharField(max_length=200, blank=True)
-	slug = models.SlugField(max_length=25, blank=True)
-	
-	def __str__(self):
-		return self.team_name
+    captain = models.ForeignKey('auth.User')
+    league = models.ForeignKey(Season)
+    team_name = models.CharField(blank=False, max_length=50)
+    blurb = models.CharField(max_length=200, blank=True)
+    slug = models.SlugField(max_length=25, blank=True)
+    stats_url = models.CharField(max_length=200, blank=True, null=True)
+    
+    def __str__(self):
+        return self.team_name
 		
 class Field(models.Model):
 	field_name = models.CharField(max_length=25, blank=False, null=False)
@@ -69,10 +70,10 @@ class Game(models.Model):
 		verbose_name="End Time"
 	)
 	field = models.ForeignKey(Field, verbose_name="Field")
-	homescore = models.PositiveSmallIntegerField(blank=True, null=True)
-	awayscore = models.PositiveSmallIntegerField(blank=True, null=True)
-	homespirit = models.PositiveSmallIntegerField(blank=True, null=True)
-	awayspirit = models.PositiveSmallIntegerField(blank=True, null=True)
+	homescore = models.PositiveSmallIntegerField(blank=True, null=True, verbose_name='Home Team Score')
+	awayscore = models.PositiveSmallIntegerField(blank=True, null=True, verbose_name='Away Team Score')
+	homespirit = models.PositiveSmallIntegerField(blank=True, null=True, verbose_name='Home Team Spirit')
+	awayspirit = models.PositiveSmallIntegerField(blank=True, null=True, verbose_name='Away Team Spirit')
 	slug = models.SlugField(max_length=25, blank=True)
 	
 	def __str__(self):
@@ -89,15 +90,17 @@ class Player(models.Model):
     jersey = models.CharField(max_length=2, blank=True, null=True)
     skill = models.PositiveSmallIntegerField(blank=True, null=True)
     first_year_frisbee = models.IntegerField(('year'), choices=year_dropdown, default=datetime.now().year)
+    notes = models.CharField(max_length=400, blank=True, null=True)
 	
     def __str__(self):
         return self.user.username
         
-class PlayerGame(models.Model):
+class PlayerStat(models.Model):
     player = models.ForeignKey(Player)
     team = models.ForeignKey(Team)
     game = models.ForeignKey(Game)
     passes = models.PositiveSmallIntegerField(blank=True, null=True)
+    catches = models.PositiveSmallIntegerField(blank=True, null=True)
     assists = models.PositiveSmallIntegerField(blank=True, null=True)
     points = models.PositiveSmallIntegerField(blank=True, null=True)
     defences = models.PositiveSmallIntegerField(blank=True, null=True)

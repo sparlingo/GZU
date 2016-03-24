@@ -14,7 +14,7 @@ from django_tables2 import RequestConfig
 from .tables import GameTable, ScoreTable, PlayerStatsTable
 
 
-from .models import Season, Team, Player, Field, Game, PlayerGame
+from .models import Season, Team, Player, Field, Game, PlayerStat
 from .forms import PlayerForm, ScoreForm, PlayerStatsForm, TeamStatsForm
 
 def league_index(request):
@@ -171,9 +171,9 @@ def player_new(request, season_id=None): #have to update this for all leagues
 def stats_report(request, game_id, team_id): #update so you can view stats for whole season
     for player in Player.objects.filter(team_id=team_id):
         try:
-            obj = PlayerGame.objects.get(player_id=player.id, game_id=game_id, team_id=team_id)
-        except PlayerGame.DoesNotExist:
-            obj = PlayerGame(player_id=player.id, game_id=game_id, team_id=team_id)
+            obj = PlayerStat.objects.get(player_id=player.id, game_id=game_id, team_id=team_id)
+        except PlayerStat.DoesNotExist:
+            obj = PlayerStat(player_id=player.id, game_id=game_id, team_id=team_id)
             obj.save()
     
     teamgamestats = PlayerStatsTable(PlayerGame.objects.filter(

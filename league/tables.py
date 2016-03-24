@@ -1,6 +1,6 @@
 import django_tables2 as tables
 from django_tables2.utils import A
-from .models import Game, PlayerGame
+from .models import Game, PlayerStat
 
 class GameTable(tables.Table):
 	class Meta:
@@ -18,8 +18,8 @@ class ScoreTable(tables.Table):
         
 class PlayerStatsTable(tables.Table):
     class Meta:
-        model = PlayerGame
+        model = PlayerStat
         link = tables.LinkColumn('stats_edit', args=[A('id')])
-        sequence = ("player", "passes", "assists", "points", "defences", "drops", "throwaways", )
+        sequence = ("player", "passes", "catches", "assists", "points", "defences", "drops", "throwaways", )
         exclude = ("team", "game", "multiplier", "id")
         attrs = {"class": "stats"}

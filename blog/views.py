@@ -23,7 +23,6 @@ from .forms import VoteForm
 from league.models import Player, Season
 
 # User Views
-
 @csrf_protect
 def register(request): #Clean this up later, KS 2015/09/08
 	if request.method == "POST":
